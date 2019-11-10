@@ -13,3 +13,4 @@ run:
 clean:
 	rm program
 	rm *.o
+	rm random

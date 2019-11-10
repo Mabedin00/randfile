@@ -15,4 +15,23 @@ int main() {
         initial_arr[i] = random_generator();
         printf("\t random %d: %d\n", i, initial_arr[i]);
     }
+
+    printf("Writing numbers to file...\n" );
+    fd = open("random", O_CREAT|O_EXCL|O_WRONLY, 0755);
+    if( fd < 0 ) {
+       printf("errno: %d error: %s\n", errno, strerror(errno));
+       return 0;
+    }
+    b = write(fd, initial_arr, SIZE_OF_ARR * sizeof(int));
+    if (b == -1) {
+        printf("Error %d: %s\n", errno, strerror(errno));
+        return 0;
+    }
+    close(fd);
+
+
+
+
+
+    printf("Reading numbers from file...\n" );
 }
