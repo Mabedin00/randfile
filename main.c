@@ -27,11 +27,20 @@ int main() {
         printf("Error %d: %s\n", errno, strerror(errno));
         return 0;
     }
-    close(fd);
-
-
-
-
 
     printf("Reading numbers from file...\n" );
+    close(fd);
+    fd = open("rand", O_RDONLY);
+    b = read(fd, final_arr, SIZE_OF_ARR * sizeof(int));
+    b = close(fd);
+    if (b == -1) {
+      printf("Error %d: %s\n", errno, strerror(errno));
+      return 0;
+    }
+    printf("Verification that written values were the same:\n");
+    for (i = 0; i < SIZE_OF_ARR; i++) {
+        printf("\t el %d: %d\n", i, final_arr[i]);
+    }
+
+
 }
